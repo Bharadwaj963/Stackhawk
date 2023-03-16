@@ -8,7 +8,7 @@ pipeline {
     }
      stage ("Pull HawkScan Image") {
       steps {
-        sudo sh 'docker pull stackhawk/hawkscan'
+        sh 'docker pull stackhawk/hawkscan'
       }
     }
     stage ("Run HawkScan Test") {
@@ -16,7 +16,7 @@ pipeline {
         STACKHAWK_API_KEY = credentials('stackhawk-api-key')
       }
       steps {
-        sudo sh '''
+        sh '''
           docker run -v ${WORKSPACE}:/hawk:rw -t \
             -e API_KEY=${STACKHAWK_API_KEY} \
             -e NO_COLOR=true \
