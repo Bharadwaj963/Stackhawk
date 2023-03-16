@@ -8,7 +8,7 @@ pipeline {
     }
      stage ("Pull HawkScan Image") {
       steps {
-        sh 'docker pull stackhawk/hawkscan'
+        sh 'docker pull stackhawk/hawkscan:latest'
       }
     }
     stage ("Run HawkScan Test") {
