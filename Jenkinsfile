@@ -8,12 +8,12 @@ pipeline {
     }
     stage ("Pull HawkScan Image") {
       steps {
-        sh 'docker pull stackhawk/hawkscan'
+        sh 'cp index.json /var/www/htm'
       }
     }
     stage ("Run HawkScan Test") {
       environment {
-        HAWK_API_KEY = credentials('stackhawk-api-key')
+        STACKHAWK_API_KEY = credentials('stackhawk-api-key')
       }
       steps {
         sh '''
