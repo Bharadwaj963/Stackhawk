@@ -1,27 +1,22 @@
 pipeline {
-  agent any
+  agent any 
+  environment {
+    STACKHAWK_API_KEY = credentials("stackhawk-api-key")
+  }
   stages {
-    stage ("Checkout code") {
+    stage("Deploy site") {
       steps {
-        checkout scm
+        sh 'cp index.json /var/www/html'
       }
     }
-    stage ("Pull HawkScan Image") {
-      steps {
-        sh 'cp index.json /var/www/htm'
-      }
-    }
-    stage ("Run HawkScan Test") {
-      environment {
-        STACKHAWK_API_KEY = credentials('stackhawk-api-key')
-      }
+    stage("Run HawkScan Test") {
       steps {
         sh '''
           docker run -v ${WORKSPACE}:/hawk:rw -t \
-            -e API_KEY=${HAWK_API_KEY} \
+            -e API_KEY=${STACKHAWK_API_KEY} \
             -e NO_COLOR=true \
             stackhawk/hawkscan
-        '''
+        '''        
       }
     }
   }
