@@ -1,7 +1,7 @@
 app:
-  applicationId:   c0663033-4568-4b75-b12d-f748184a7ae5
+  applicationId:   cb0f7876-397a-4a49-bc87-aa5c3b89ee3c
   host: http://testphp.vulnweb.com
-  env: Production
+  env: Development
 
 hawk:
   startupTimeoutMinutes: 1
